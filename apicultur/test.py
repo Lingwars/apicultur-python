@@ -4,29 +4,57 @@
 from apicultur import Apicultur
 from secret import ACCESS_TOKEN
 
-def test1(app_name):
+
+def print_title(app_name, test_name):
+    length = len(app_name)+len(test_name)+6
+    print("="*length)
+    print("= %s: %s =" % (app_name, test_name))
+    print("="*length)
+
+
+def test_token(app_name):
+    print_title(app_name, "test_token")
     apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
-    print("="*(len(app_name)+4))
-    print("= %s =" % apicultur.app)
-    print("="*(len(app_name)+4))
-
     if apicultur.check_token():
-        # Let's work with this apicultur instance
-        print(" - version: %s" % apicultur.version)
-        print("")
-        apicultur.list_services()
-        print("")
-
-        # Lematización
-        print(u" - Lematización:")
-        word = u'meses'
-        print(u"   >> input: '%s'" % word)
-        print(u"   + lematiza2: %s" % apicultur.lematiza2(word=word))
-        print(u"   + lematiza2: %s" % apicultur.lematiza2(word=word))
-
+        print(" - token valid! :D")
     else:
-        print("Invalid token :(")
+        print(" - invalid token! :(")
+
+
+def test_list_services(app_name):
+    print_title(app_name, "test_list_services")
+    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
+
+    print(" - version: %s" % apicultur.version)
+    print("")
+    apicultur.list_services()
+    print("")
+
+
+def test_call(app_name):
+    print_title(app_name, "test_call")
+    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
+
+    # Lematización
+    print(u" - Lematización:")
+    word = u'meses'
+    print(u"   >> input: '%s'" % word)
+    print(u"   + lematiza2: %s" % apicultur.lematiza2(word=word))
+
+
+def test_throttle(app_name):
+    print_title(app_name, "test_throttle")
+    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
+    messages = 2
+    seconds = 10
+    apicultur.set_throttle(messages, seconds)
+    print(u" - Throttle set to %d messages each %d seconds:" % (messages, seconds))
+    for i in xrange(100):
+        print(u"    + %dth call: %s" % (i, apicultur.lematiza2(word=u'perro')))
 
 
 if __name__ == '__main__':
-    test1("My Application")
+    test_token("My Application")
+    test_list_services("My Application")
+    test_call("My Application")
+    test_throttle("My Application")
