@@ -44,9 +44,14 @@ class Base(object):
     def handle_response(self, response):
         if response.status_code == 200:
             return response.json()
+        elif response.status_code == 401:
+            print(u"ERROR 401: Unauthorized!")
+            return None
         else:
             # TODO: Handle errors
             print(u"\tERROR %s" % (response.status_code))
+            print(u"\t - url: %s" % response.url)
+            print(u"\t - text: %s" % response.text)
             return None
 
     def get(self, *args, **kwargs):

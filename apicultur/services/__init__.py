@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 from lematizador2 import Lematizador2
+from calculador_frecuencia import CalculadorFrecuencia
+from nivel_cervantes import NivelCervantes
+
 
 # Get all services available
 def load_available_services(version=None):

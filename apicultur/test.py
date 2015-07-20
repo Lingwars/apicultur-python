@@ -49,8 +49,26 @@ def test_throttle(app_name):
     seconds = 10
     apicultur.set_throttle(messages, seconds)
     print(u" - Throttle set to %d messages each %d seconds:" % (messages, seconds))
-    for i in xrange(100):
+    for i in xrange(5):
         print(u"    + %dth call: %s" % (i, apicultur.lematiza2(word=u'perro')))
+
+def test_freq(app_name):
+    print_title(app_name, "test_freq")
+    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
+    # Freq
+    print(u" - Compute frequencies for work:")
+    word = u'meses'
+    print(u"   >> input: '%s'" % word)
+    print(u"   + freq: '%s'" % apicultur.CalculaFrecuenciaPorMillon(word=word))
+
+def test_level(app_name):
+    print_title(app_name, "test_level")
+    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
+    # Freq
+    print(u" - Cervantes level:")
+    word = u'perro'
+    print(u"   >> input: '%s'" % word)
+    print(u"   + freq: '%s'" % apicultur.damenivel(word=word))
 
 
 if __name__ == '__main__':
@@ -58,3 +76,5 @@ if __name__ == '__main__':
     test_list_services("My Application")
     test_call("My Application")
     #test_throttle("My Application")
+    test_freq("My App")
+    test_level("My App")

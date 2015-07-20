@@ -25,7 +25,7 @@ class Apicultur(object):
     def list_services(self):
         # List all services available in 'services' package and compatible with this version.
         for endpoint, obj in self._endpoints.iteritems():
-            print(u"%s: .%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
+            print(u"%s:\t .%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
 
     def set_throttle(self, max_messages=0, every_seconds=None):
         assert(max_messages >= 0)
