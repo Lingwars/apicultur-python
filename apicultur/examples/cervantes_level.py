@@ -10,7 +10,8 @@ from secret import ACCESS_TOKEN
 
 
 def cervantes_level(filename):
-    # We are goingo to request Cevantes level for each lematized word
+    # We are going to request Cevantes level for each lematized word
+
     # Read file
     lines = []
     for line in open(filename).readlines():
@@ -32,7 +33,7 @@ def cervantes_level(filename):
             lema = lemmas['lemas'][0]  # TODO: Desambiguation!
             counter[(lema['lema'], lema['categoria'])] += 1
 
-    # Compute Cervantes level for each lemma
+    # Get Cervantes level for each lemma -- APICULTUR
     sum_levels = 0
     n_lemmas = 0
     for (lemma, cat), count in counter.most_common():
