@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 from apicultur import Apicultur
 from secret import ACCESS_TOKEN
 
+
+apicultur = Apicultur(ACCESS_TOKEN, app="Test")
+#apicultur.add_services(os.path.join(os.path.dirname(__file__), 'services'))
 
 def print_title(app_name, test_name):
     length = len(app_name)+len(test_name)+6
@@ -14,7 +18,6 @@ def print_title(app_name, test_name):
 
 def test_token(app_name):
     print_title(app_name, "test_token")
-    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
     if apicultur.check_token():
         print(" - token valid! :D")
     else:
@@ -23,8 +26,6 @@ def test_token(app_name):
 
 def test_list_services(app_name):
     print_title(app_name, "test_list_services")
-    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
-
     print(" - version: %s" % apicultur.version)
     print("")
     apicultur.list_services()
@@ -33,8 +34,6 @@ def test_list_services(app_name):
 
 def test_call(app_name):
     print_title(app_name, "test_call")
-    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
-
     # Lematización
     print(u" - Lematización:")
     word = u'meses'
@@ -44,7 +43,6 @@ def test_call(app_name):
 
 def test_throttle(app_name):
     print_title(app_name, "test_throttle")
-    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
     messages = 2
     seconds = 10
     apicultur.set_throttle(messages, seconds)
@@ -54,7 +52,6 @@ def test_throttle(app_name):
 
 def test_freq(app_name):
     print_title(app_name, "test_freq")
-    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
     # Freq
     print(u" - Compute frequencies for work:")
     word = u'meses'
@@ -63,7 +60,6 @@ def test_freq(app_name):
 
 def test_level(app_name):
     print_title(app_name, "test_level")
-    apicultur = Apicultur(ACCESS_TOKEN, app=app_name)
     # Freq
     print(u" - Cervantes level:")
     word = u'perro'

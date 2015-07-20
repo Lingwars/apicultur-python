@@ -1,25 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pkgutil
+
 import os
+import sys
 from base import Base
 
 
-# Get all services available.
-def load_services(dirname='services', version=None):
-    # All packages in dirname
-    modules = ['%s.%s' % (dirname, package_name) for importer, package_name, _ in pkgutil.iter_modules([dirname])]
-
-    # All classes in each module
+def load_services(path, version=None):
+    # TODO: Implement version filtering
+    # Search all classes in path
     candidate_services = []
-    for mod in modules:
-        module = __import__(mod)
-        components = mod.split('.')
-        for comp in components[1:]:
-            module = getattr(module, comp)
-            md = module.__dict__
-            candidate_services += [md[c] for c in md if (isinstance(md[c], type) and md[c].__module__ == module.__name__)]
+    for py in [f[:-3] for f in os.listdir(path) if f.endswith('.py') and f != '__init__.py']:
+        mod = __import__('.'.join([__name__, py]), fromlist=[py])
+        classes = [getattr(mod, x) for x in dir(mod) if isinstance(getattr(mod, x), type)]
+        for cls in classes:
+            candidate_services += [cls]
+            setattr(sys.modules[__name__], cls.__name__, cls)
 
     # Work with candidates
     endpoints = {}
@@ -29,3 +26,4 @@ def load_services(dirname='services', version=None):
                 raise ImportError("Duplicate endpoint at %r" % service.endpoint)
             endpoints.update({service.endpoint: service})
     return endpoints
+

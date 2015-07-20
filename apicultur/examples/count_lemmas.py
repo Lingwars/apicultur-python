@@ -21,9 +21,11 @@ def count_lemmas(filename):
     words = [word.strip(punctuation) for line in lines for word in line.split()]
     print(u"%d words" % len(words))
 
-    # Lemmatize -- APICULTUR ;D
+    # APICULTUR
     apiculture = Apicultur(ACCESS_TOKEN, "example")  # create API proxy
     apiculture.set_throttle(20, 60)  # 20 messages every 60 seconds (~bronze suscription)
+
+    # Lemmatize -- APICULTUR ;D
     counter = Counter()
     for word in words:
         lemmas = apiculture.lematiza2(word=word)
