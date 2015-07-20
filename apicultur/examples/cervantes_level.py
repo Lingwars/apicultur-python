@@ -39,7 +39,7 @@ def cervantes_level(filename):
         level = apiculture.damenivel(word = lemma)
         if level:
             level = level['valor']
-            if level != 0:
+            if level != 0:  # TODO: level == 0 for non categorized words
                 sum_levels += level*count
                 n_lemmas += count
 
