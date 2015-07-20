@@ -57,4 +57,4 @@ if __name__ == '__main__':
     test_token("My Application")
     test_list_services("My Application")
     test_call("My Application")
-    test_throttle("My Application")
+    #test_throttle("My Application")

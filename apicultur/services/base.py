@@ -8,28 +8,32 @@ from urlparse import urljoin
 
 class Base(object):
     method = None
+    arguments = None
 
     def __init__(self, access_token, base_url):
         self.access_token = access_token
         self.base_url = base_url
 
     def _join_url(self, *args):
-
         return '/'.join([self.base_url] + list(args))
 
     def get_endpoint(self):
         return self._join_url(self.endpoint, self.version)
 
-    def build_arguments(self, *args, **kwargs):
-        # TODO: Implement argument building
-        pass
+    def check_arguments(self, **kwargs):
+        if self.arguments:
+            for arg in self.arguments:
+                if not arg in kwargs:
+                    raise AttributeError("Missing %r named argument" % arg)
+        return kwargs
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, **kwargs):
+        arguments = self.check_arguments(**kwargs)
         # TODO: Use django dispatch approach
         if self.method == 'GET':
-            return self.get(*args, **kwargs)
+            return self.get(**arguments)
         elif self.method == 'POST':
-            return self.post(*args, **kwargs)
+            return self.post(**arguments)
         else:
             raise RuntimeError("Call method not implemented")
 
