@@ -15,8 +15,8 @@ class Apicultur(object):
         self.app = app
         self.access_token = access_token
 
-        from services import load_available_services
-        self._endpoints = load_available_services(self.version)
+        from services import load_services
+        self._endpoints = load_services('services', self.version)
 
     def check_token(self):
         # TODO: Is there a way to check this?

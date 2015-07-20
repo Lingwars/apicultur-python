@@ -1,24 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import pkgutil
+import os
+from base import Base
 
-from lematizador2 import Lematizador2
-from calculador_frecuencia import CalculadorFrecuencia
-from nivel_cervantes import NivelCervantes
 
+# Get all services available.
+def load_services(dirname='services', version=None):
+    # All packages in dirname
+    modules = ['%s.%s' % (dirname, package_name) for importer, package_name, _ in pkgutil.iter_modules([dirname])]
 
-# Get all services available
-def load_available_services(version=None):
-    # TODO: Consider version argument
-    import sys
-    import inspect
-    from base import Base
+    # All classes in each module
+    candidate_services = []
+    for mod in modules:
+        module = __import__(mod)
+        components = mod.split('.')
+        for comp in components[1:]:
+            module = getattr(module, comp)
+            md = module.__dict__
+            candidate_services += [md[c] for c in md if (isinstance(md[c], type) and md[c].__module__ == module.__name__)]
 
+    # Work with candidates
     endpoints = {}
-    for name, obj in inspect.getmembers(sys.modules[__name__]):
-        if inspect.isclass(obj) and issubclass(obj, Base) and name != 'Base':
-            if obj.endpoint in endpoints:
-                raise ImportError("Duplicate endpoint at %r" % obj.endpoint)
-            endpoints.update({obj.endpoint: obj})
+    for service in candidate_services:
+        if issubclass(service, Base) and service.__name__ != 'Base':
+            if service.endpoint in endpoints:
+                raise ImportError("Duplicate endpoint at %r" % service.endpoint)
+            endpoints.update({service.endpoint: service})
     return endpoints
-
