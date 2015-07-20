@@ -45,7 +45,10 @@ class Base(object):
         if response.status_code == 200:
             return response.json()
         elif response.status_code == 401:
-            print(u"ERROR 401: Unauthorized!")
+            print(u"\tERROR 401: Unauthorized! Check your ACCESS_TOKEN and application subscription to this API.")
+            return None
+        elif response.status_code == 503:
+            print(u"\tERROR 503: Rate limit reached!")
             return None
         else:
             # TODO: Handle errors

@@ -39,7 +39,7 @@ class Throttle(object):
 
             wait_time = self.window_time + self.n_seconds - now
             self.lock.release()
-            print(u"... rate limit! Waiting %s seconds" % wait_time)
+            print(u"... waiting %s seconds for rate limit" % wait_time)
             time.sleep(wait_time)
 
             self.lock.acquire()

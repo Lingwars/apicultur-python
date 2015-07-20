@@ -9,7 +9,8 @@ from apicultur import Apicultur
 from secret import ACCESS_TOKEN
 
 
-def count_lemmas(filename):
+def cervantes_level(filename):
+    # We are goingo to request Cevantes level for each lematized word
     # Read file
     lines = []
     for line in open(filename).readlines():
@@ -28,9 +29,22 @@ def count_lemmas(filename):
     for word in words:
         lemmas = apiculture.lematiza2(word=word)
         if lemmas:
-            lema = lemmas['lemas'][0] # TODO: Desambiguation!
+            lema = lemmas['lemas'][0]  # TODO: Desambiguation!
             counter[(lema['lema'], lema['categoria'])] += 1
-    return counter
+
+    # Compute Cervantes level for each lemma
+    sum_levels = 0
+    n_lemmas = 0
+    for (lemma, cat), count in counter.most_common():
+        level = apiculture.damenivel(word = lemma)
+        if level:
+            level = level['valor']
+            if level != 0:
+                sum_levels += level*count
+                n_lemmas += count
+
+    # Return medium value
+    return sum_levels, n_lemmas
 
 
 if __name__ == '__main__':
@@ -44,14 +58,9 @@ if __name__ == '__main__':
         sys.exit()
 
     print(u"\t- Processing file: '%s'" % filename)
-    counter = count_lemmas(filename)
+    sum_levels, n_lemmas = cervantes_level(filename)
 
-    print(u"\n\t\tLEMMA\t\t\tCATEGORY\t\tCOUNT")
-    print(u"  \t\t=====\t\t\t========\t\t=====")
-    common_words = counter.most_common(100)
-    for (lemma, cat), count in common_words:
-        print(u"\t\t%-15s\t\t%-10s\t\t%s" % (lemma, cat, count))
-
+    print(u"\t- Computed media for text: %s (on %s lemmas)" % (sum_levels/n_lemmas, n_lemmas))
 
 
 
