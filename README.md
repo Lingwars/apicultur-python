@@ -1,2 +1,4 @@
 # apicultur-python
-Client API to Apicultur services
+Python client to Apicultur API services
+
+
