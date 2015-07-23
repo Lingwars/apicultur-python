@@ -22,8 +22,9 @@ def load_services(path, version=None):
     endpoints = {}
     for service in candidate_services:
         if issubclass(service, Base) and service.__name__ != 'Base':
-            if service.endpoint in endpoints:
-                raise ImportError("Duplicate endpoint at %r" % service.endpoint)
-            endpoints.update({service.endpoint: service})
+            func_name = service.func_name if hasattr(service, 'func_name') else service.endpoint
+            if func_name in endpoints:
+                raise ImportError("Duplicate endpoint at %r" % func_name)
+            endpoints.update({func_name: service})
     return endpoints
 
