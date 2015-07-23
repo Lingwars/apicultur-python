@@ -5,13 +5,20 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
+
+def get_version():
+    with open(path.join('apicultur', '__init__.py')) as f:
+        for line in f:
+            if line.startswith('__version__ ='):
+                return line.split('=')[1].strip().strip('"\'')
+
 here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
     name='apicultur',
-    version='0.1.0',
+    version=get_version(),
     description='Python client to Apicultur API services',
     long_description=long_description,
     url='https://github.com/jgsogo/apicultur-python',
@@ -49,7 +56,7 @@ setup(
     ],
 
     keywords='api linguistic apicultur',
-    #packages=find_packages(),
-    packages = ['apicultur'],
+    packages=find_packages(),
+    #packages = ['apicultur'],
     install_requires=['requests'],
 )

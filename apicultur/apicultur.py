@@ -3,9 +3,9 @@
 
 import os
 from functools import partial
-from throttle import Throttle, NoThrottle
 
-from services import load_services
+from .throttle import Throttle, NoThrottle
+from .services import load_services
 
 
 class Apicultur(object):
