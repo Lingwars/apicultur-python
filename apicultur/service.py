@@ -19,6 +19,7 @@ class UnhandledError(Exception):
 class Service(object):
     method = None
     arguments = None
+    func_name = None
 
     def __init__(self, access_token, base_url):
         self.access_token = access_token
@@ -29,6 +30,14 @@ class Service(object):
 
     def get_endpoint(self):
         return self._join_url(self.endpoint, self.version)
+
+    @classmethod
+    def get_func_name(cls):
+        if cls.func_name:
+            print "FUNC NA;E"
+            return cls.func_name
+        else:
+            return cls.endpoint.replace("\\", '_').replace('/', '_')
 
     def check_arguments(self, **kwargs):
         if self.arguments:
@@ -113,7 +122,7 @@ def load_services(path, version=None):
     endpoints = {}
     for service in candidate_services:
         if issubclass(service, Service) and service.__name__ != Service.__name__:
-            func_name = service.func_name if hasattr(service, 'func_name') else service.endpoint
+            func_name = service.get_func_name()
             if func_name in endpoints:
                 raise ImportError("Duplicate endpoint at %r" % func_name)
             service._filepath = path

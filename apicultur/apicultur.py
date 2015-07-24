@@ -12,7 +12,8 @@ APICULTUR = {'store.apicultur.com': {'base_url': 'http://store.apicultur.com/api
                                      'version': '1.0.0',
                                      'services': os.path.join(os.path.dirname(__file__), 'store.apicultur.com')},
              'apicultur.io': {'base_url': 'http://apicultur.io/api',
-                              'version': '1.0'}
+                              'version': '1.0',
+                              'services': os.path.join(os.path.dirname(__file__), 'apicultur.io')}
 }
 
 
@@ -20,14 +21,17 @@ class Apicultur(object):
     throttle = NoThrottle()
     _endpoints = {}
 
-    def __init__(self, access_token, app=None, cfg_data=APICULTUR['store.apicultur.com']):
+    def __init__(self, access_token, app=None, cfg_data='store.apicultur.com'):
         self.app = app
         self.access_token = access_token
-        if cfg_data:
-            self.base_url = cfg_data['base_url']
-            self.version = cfg_data['version']
-            if 'services' in cfg_data:
-                self.add_services(dirname=cfg_data['services'])
+        if cfg_data and cfg_data in APICULTUR:
+            data = APICULTUR[cfg_data]
+            self.base_url = data['base_url']
+            self.version = data['version']
+            if 'services' in data:
+                self.add_services(dirname=data['services'])
+        else:
+            raise AttributeError(u"%s not available as default configuration" % cfg_data)
 
     def add_services(self, dirname, clear=False):
         if clear:
@@ -46,10 +50,12 @@ class Apicultur(object):
         print(u"IDENTIFIER\t\t\tDATA")
         print(u"==========\t\t\t====")
         for endpoint, obj in self._endpoints.iteritems():
+            instance = obj(self.access_token, self.base_url)
             print(u"%-20s\t\tapicultur.%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
             print(u"%-20s\t\t - file: %s" % ("", obj._filepath))
+            print(u"%-20s\t\t - endpoint: %s" % ("", instance.get_endpoint()))
             if test:
-                r = obj(self.access_token, self.base_url).test_call()
+                r = instance.test_call()
                 print(u"%-20s\t\t - availability: %s" % ("", r))
             print('')
 
