@@ -34,7 +34,6 @@ class Service(object):
     @classmethod
     def get_func_name(cls):
         if cls.func_name:
-            print "FUNC NA;E"
             return cls.func_name
         else:
             return cls.endpoint.replace("\\", '_').replace('/', '_')
