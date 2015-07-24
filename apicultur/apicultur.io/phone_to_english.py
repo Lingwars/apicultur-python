@@ -6,7 +6,7 @@ from apicultur.service import Service
 class PhoneToEnglish(Service):
     # https://store.apicultur.com/apis/info?name=CalculadorFrecuencia&version=1.0.0&provider=MolinodeIdeas
     version = '1.0'
-    endpoint = 'phonenglish/phonetoenglish'
+    endpoint = 'phonenglish/englishtophone'
     method = 'GET'
     arguments = ['word',]
 
