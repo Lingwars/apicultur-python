@@ -41,10 +41,17 @@ class Apicultur(object):
         # TODO: Is there a way to check this?
         return True
 
-    def list_services(self):
+    def list_services(self, test=False):
         # List all services available in 'services' package and compatible with this version.
+        print(u"IDENTIFIER\t\t\tDATA")
+        print(u"==========\t\t\t====")
         for endpoint, obj in self._endpoints.iteritems():
-            print(u"%s:\t .%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
+            print(u"%-20s\t\tapicultur.%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
+            print(u"%-20s\t\t - file: %s" % ("", obj._filepath))
+            if test:
+                r = obj(self.access_token, self.base_url).test_call()
+                print(u"%-20s\t\t - availability: %s" % ("", r))
+            print('')
 
     def set_throttle(self, max_messages=0, every_seconds=None):
         assert(max_messages >= 0)
@@ -58,7 +65,7 @@ class Apicultur(object):
         # We are calling a service: build and return as callable
         service_class = self._endpoints.get(item, None)
         if not service_class:
-            raise RuntimeError("API endpoint not available.")
+            raise RuntimeError("API endpoint %r not available." % item)
         service = service_class(self.access_token, self.base_url)
         cur_service = partial(self.call_service, service=service)
         setattr(self, item, cur_service)
@@ -68,3 +75,8 @@ class Apicultur(object):
         self.throttle.acquire()
         return service(*args, **kwargs)
 
+
+if __name__=='__main__':
+    from secret import ACCESS_TOKEN
+    api = Apicultur(ACCESS_TOKEN)
+    api.list_services(test=True)

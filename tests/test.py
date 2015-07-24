@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from apicultur import Apicultur
+from apicultur import Apicultur, UnauthorizedError
 from secret import ACCESS_TOKEN
 
 
@@ -28,7 +28,7 @@ def test_list_services(app_name):
     print_title(app_name, "test_list_services")
     print(" - version: %s" % apicultur.version)
     print("")
-    apicultur.list_services()
+    apicultur.list_services(test=True)
     print("")
 
 
@@ -68,9 +68,11 @@ def test_level(app_name):
 
 
 if __name__ == '__main__':
-    test_token("My Application")
-    test_list_services("My Application")
-    test_call("My Application")
-    #test_throttle("My Application")
-    test_freq("My App")
-    test_level("My App")
+    #tests = [test_token, test_list_services, test_call, test_throttle, test_freq, test_level]
+    tests = [test_token, test_list_services, test_call, test_freq, test_level]
+
+    for test in tests:
+        try:
+            test("My App")
+        except UnauthorizedError:
+            print(u"[ERROR]: Unauthorized!")

@@ -4,3 +4,4 @@
 __version__ = '0.1.2'
 
 from apicultur import Apicultur
+from service import UnauthorizedError, UnhandledError, RateLimitError

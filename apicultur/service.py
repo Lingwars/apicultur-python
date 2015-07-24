@@ -6,6 +6,16 @@ import json
 from urlparse import urljoin
 
 
+class UnauthorizedError(Exception):
+    pass
+
+class RateLimitError(Exception):
+    pass
+
+class UnhandledError(Exception):
+    pass
+
+
 class Service(object):
     method = None
     arguments = None
@@ -37,6 +47,16 @@ class Service(object):
         else:
             raise RuntimeError("Call method not implemented")
 
+    def test_call(self):
+        call_args = {}
+        for arg in self.arguments:
+            call_args[arg] = 'test'
+        try:
+            self(**call_args)
+            return True
+        except UnauthorizedError:
+            return u'Unauthorized! Check your ACCESS_TOKEN and application subscription to this API.'
+
     def get_headers(self):
         return {'content-type': 'application/json',
                 'Authorization': 'Bearer ' + self.access_token}
@@ -45,17 +65,19 @@ class Service(object):
         if response.status_code == 200:
             return response.json()
         elif response.status_code == 401:
-            print(u"\tERROR 401: Unauthorized! Check your ACCESS_TOKEN and application subscription to this API.")
-            return None
+            raise UnauthorizedError()
+            #print(u"\tERROR 401: Unauthorized! Check your ACCESS_TOKEN and application subscription to this API.")
+            #return None
         elif response.status_code == 503:
-            print(u"\tERROR 503: Rate limit reached!")
-            return None
+            raise RateLimitError()
+            #print(u"\tERROR 503: Rate limit reached!")
+            #return None
         else:
             # TODO: Handle errors
             print(u"\tERROR %s" % (response.status_code))
             print(u"\t - url: %s" % response.url)
             print(u"\t - text: %s" % response.text)
-            return None
+            return UnhandledError()
 
     def get(self, *args, **kwargs):
         endpoint = self.get_endpoint()
@@ -94,5 +116,6 @@ def load_services(path, version=None):
             func_name = service.func_name if hasattr(service, 'func_name') else service.endpoint
             if func_name in endpoints:
                 raise ImportError("Duplicate endpoint at %r" % func_name)
+            service._filepath = path
             endpoints.update({func_name: service})
     return endpoints
