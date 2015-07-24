@@ -75,8 +75,3 @@ class Apicultur(object):
         self.throttle.acquire()
         return service(*args, **kwargs)
 
-
-if __name__=='__main__':
-    from secret import ACCESS_TOKEN
-    api = Apicultur(ACCESS_TOKEN)
-    api.list_services(test=True)

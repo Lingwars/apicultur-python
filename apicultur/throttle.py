@@ -25,6 +25,10 @@ class Throttle(object):
         self.window_num = 0
         self.window_time = time.time()
 
+    def wait(self, wait_seconds):
+        print(u"... waiting %s seconds for rate limit" % wait_seconds)
+        time.sleep(wait_seconds)
+
     def acquire(self, block=True):
         self.lock.acquire()
 
@@ -39,8 +43,7 @@ class Throttle(object):
 
             wait_time = self.window_time + self.n_seconds - now
             self.lock.release()
-            print(u"... waiting %s seconds for rate limit" % wait_time)
-            time.sleep(wait_time)
+            self.wait(wait_seconds=wait_time)
 
             self.lock.acquire()
             self._reset_window()
