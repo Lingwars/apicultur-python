@@ -7,19 +7,20 @@ from functools import partial
 from .throttle import Throttle, NoThrottle
 from .services import load_services
 
+APICULTUR_BASE_URL = 'http://store.apicultur.com/api'
+APICULTUR_VERSION = '1.0.0'
+
 
 class Apicultur(object):
-    app = None
-    access_token = None
-    version = '1.0.0'
-    base_url = 'http://store.apicultur.com/api'
     throttle = NoThrottle()
     _endpoints = {}
 
-    def __init__(self, access_token, app=None, load_services=True):
+    def __init__(self, access_token, app=None, default_services=True, base_url=APICULTUR_BASE_URL, version=APICULTUR_VERSION):
         self.app = app
         self.access_token = access_token
-        if load_services:
+        self.base_url = base_url
+        self.version = version
+        if default_services:
             self.add_services(dirname=os.path.join(os.path.dirname(__file__), 'services'))
 
     def add_services(self, dirname, clear=False):
