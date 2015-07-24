@@ -10,10 +10,10 @@ from .service import load_services
 
 APICULTUR = {'store.apicultur.com': {'base_url': 'http://store.apicultur.com/api',
                                      'version': '1.0.0',
-                                     'services': os.path.join(os.path.dirname(__file__), 'store.apicultur.com')},
+                                     'services': os.path.join(os.path.dirname(__file__), 'store_apicultur_com')},
              'apicultur.io': {'base_url': 'http://apicultur.io/api',
                               'version': '1.0',
-                              'services': os.path.join(os.path.dirname(__file__), 'apicultur.io')}
+                              'services': os.path.join(os.path.dirname(__file__), 'apicultur_io')}
 }
 
 
