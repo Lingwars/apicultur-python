@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base import Base
+from apicultur.service import Service
 
-class NivelCervantes(Base):
-    # https://store.apicultur.com/apis/info?name=NivelCervantes&version=1.0.0&provider=MolinodeIdeas
+class Lematizador2(Service):
     version = '1.0.0'
-    endpoint = 'damenivel'
+    endpoint = 'lematiza2'
     method = 'GET'
     arguments = ['word',]
 

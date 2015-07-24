@@ -5,23 +5,29 @@ import os
 from functools import partial
 
 from .throttle import Throttle, NoThrottle
-from .services import load_services
+from .service import load_services
 
-APICULTUR_BASE_URL = 'http://store.apicultur.com/api'
-APICULTUR_VERSION = '1.0.0'
+
+APICULTUR = {'store.apicultur.com': {'base_url': 'http://store.apicultur.com/api',
+                                     'version': '1.0.0',
+                                     'services': os.path.join(os.path.dirname(__file__), 'store.apicultur.com')},
+             'apicultur.io': {'base_url': 'http://apicultur.io/api',
+                              'version': '1.0'}
+}
 
 
 class Apicultur(object):
     throttle = NoThrottle()
     _endpoints = {}
 
-    def __init__(self, access_token, app=None, default_services=True, base_url=APICULTUR_BASE_URL, version=APICULTUR_VERSION):
+    def __init__(self, access_token, app=None, cfg_data=APICULTUR['store.apicultur.com']):
         self.app = app
         self.access_token = access_token
-        self.base_url = base_url
-        self.version = version
-        if default_services:
-            self.add_services(dirname=os.path.join(os.path.dirname(__file__), 'services'))
+        if cfg_data:
+            self.base_url = cfg_data['base_url']
+            self.version = cfg_data['version']
+            if 'services' in cfg_data:
+                self.add_services(dirname=cfg_data['services'])
 
     def add_services(self, dirname, clear=False):
         if clear:

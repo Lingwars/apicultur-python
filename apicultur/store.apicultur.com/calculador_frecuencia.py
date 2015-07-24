@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base import Base
+from apicultur.service import Service
 
-class CalculadorFrecuencia(Base):
+class CalculadorFrecuencia(Service):
     # https://store.apicultur.com/apis/info?name=CalculadorFrecuencia&version=1.0.0&provider=MolinodeIdeas
     version = '1.0.0'
     endpoint = 'CalculaFrecuenciaPorMillon'
