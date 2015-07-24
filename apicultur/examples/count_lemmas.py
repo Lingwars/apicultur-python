@@ -5,9 +5,8 @@ import os
 import sys
 from collections import Counter
 
-from apicultur import Apicultur
+from apicultur.utils import ApiculturRateLimitSafe
 from secret import ACCESS_TOKEN
-
 
 def count_lemmas(filename):
     # Read file
@@ -22,8 +21,8 @@ def count_lemmas(filename):
     print(u"%d words" % len(words))
 
     # APICULTUR
-    apiculture = Apicultur(ACCESS_TOKEN, "example")  # create API proxy
-    apiculture.set_throttle(60, 60)  # 20 messages every 60 seconds (~bronze suscription)
+    apiculture = ApiculturRateLimitSafe(ACCESS_TOKEN, "example")  # create API proxy
+    #apiculture.set_throttle(60, 60)  # 20 messages every 60 seconds (~bronze suscription)
 
     # Lemmatize -- APICULTUR ;D
     counter = Counter()
