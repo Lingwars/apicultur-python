@@ -74,12 +74,8 @@ class Service(object):
             return response.json()
         elif response.status_code == 401:
             raise UnauthorizedError()
-            #print(u"\tERROR 401: Unauthorized! Check your ACCESS_TOKEN and application subscription to this API.")
-            #return None
         elif response.status_code == 503:
             raise RateLimitError()
-            #print(u"\tERROR 503: Rate limit reached!")
-            #return None
         else:
             # TODO: Handle errors
             print(u"\tERROR %s" % (response.status_code))

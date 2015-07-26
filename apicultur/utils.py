@@ -4,7 +4,7 @@
 
 import time
 from .apicultur import Apicultur
-from .service import RateLimitError
+from .service import RateLimitError, UnauthorizedError
 
 
 class ApiculturRateLimitSafe(Apicultur):
@@ -20,3 +20,7 @@ class ApiculturRateLimitSafe(Apicultur):
         except RateLimitError:
             time.sleep(self.wait_seconds)
             return self.call_service(service, *args, **kwargs)
+        except UnauthorizedError:
+            print(u"API call to %s unauthorized! Check your access_token." % service.__name__)
+        except UnhandledError:
+            pass  # TODO: Silent error?
