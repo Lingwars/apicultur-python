@@ -21,6 +21,6 @@ class ApiculturRateLimitSafe(Apicultur):
             time.sleep(self.wait_seconds)
             return self.call_service(service, *args, **kwargs)
         except UnauthorizedError:
-            print(u"API call to %s unauthorized! Check your access_token." % service.__name__)
+            print(u"API call to %s unauthorized! Check your access_token." % service.__class__.__name__)
         except UnhandledError:
             pass  # TODO: Silent error?
