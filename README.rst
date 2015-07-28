@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jgsogo/apicultur-python.svg?branch=master)](https://travis-ci.org/jgsogo/apicultur-python)
 
 apicultur-python
 ================
