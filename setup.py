@@ -12,15 +12,12 @@ def get_version():
             if line.startswith('__version__ ='):
                 return line.split('=')[1].strip().strip('"\'')
 
-here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
 
 setup(
     name='apicultur',
     version=get_version(),
     description='Python client to Apicultur API services',
-    long_description=long_description,
+    long_description='Python client to Apicultur API services',
     url='https://github.com/jgsogo/apicultur-python',
     author='Javier G. Sogo',
     author_email='jgsogo@gmail.com',
