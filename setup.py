@@ -4,10 +4,10 @@
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
-
+from io import open
 
 def get_version():
-    with open(path.join('apicultur', '__init__.py')) as f:
+    with open(path.join('apicultur', '__init__.py'), encoding='utf-8') as f:
         for line in f:
             if line.startswith('__version__ ='):
                 return line.split('=')[1].strip().strip('"\'')
