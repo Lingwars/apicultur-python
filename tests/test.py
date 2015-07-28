@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from apicultur import Apicultur, UnauthorizedError
 from secret import ACCESS_TOKEN
 

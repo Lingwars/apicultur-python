@@ -3,7 +3,11 @@
 
 import requests
 import json
-from urlparse import urljoin
+
+try:  # Python 3
+    from urllib.parse import urljoin
+except ImportError:  # Fallback to Python 2
+    from urlparse import urljoin
 
 
 class UnauthorizedError(Exception):

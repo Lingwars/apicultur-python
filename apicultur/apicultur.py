@@ -49,7 +49,7 @@ class Apicultur(object):
         # List all services available in 'services' package and compatible with this version.
         print(u"IDENTIFIER\t\t\tDATA")
         print(u"==========\t\t\t====")
-        for endpoint, obj in self._endpoints.iteritems():
+        for (endpoint, obj) in self._endpoints.items():
             instance = obj(self.access_token, self.base_url)
             print(u"%-20s\t\tapicultur.%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
             print(u"%-20s\t\t - file: %s" % ("", obj._filepath))
