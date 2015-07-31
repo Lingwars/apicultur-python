@@ -47,9 +47,10 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Lingwars'
+project = 'apicultur-python'
 copyright = '2015, Lingwars'
 author = 'Lingwars'
+
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -223,7 +224,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'Lingwars.tex', 'Lingwars Documentation',
+  (master_doc, 'Lingwars.tex', 'apicultur-python documentation',
    'Lingwars', 'manual'),
 ]
 
@@ -253,7 +254,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'lingwars', 'Lingwars Documentation',
+    (master_doc, 'lingwars', 'apicultur-python documentation',
      [author], 1)
 ]
 
@@ -267,7 +268,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'Lingwars', 'Lingwars Documentation',
+  (master_doc, 'Lingwars', 'apicultur-python documentation',
    author, 'Lingwars', 'One line description of project.',
    'Miscellaneous'),
 ]
