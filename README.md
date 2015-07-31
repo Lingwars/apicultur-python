@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/jgsogo/apicultur-python.svg?branch=master)](https://travis-ci.org/jgsogo/apicultur-python)
 
+[![Documentation Status](https://readthedocs.org/projects/apicultur-python/badge/?version=latest)](https://readthedocs.org/projects/apicultur-python/?badge=latest)
+
 # apicultur-python
 
 
