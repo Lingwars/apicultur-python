@@ -85,7 +85,7 @@ class Service(object):
             print(u"\tERROR %s" % (response.status_code))
             print(u"\t - url: %s" % response.url)
             print(u"\t - text: %s" % response.text)
-            return UnhandledError()
+            raise UnhandledError()
 
     def get(self, *args, **kwargs):
         endpoint = self.get_endpoint()
