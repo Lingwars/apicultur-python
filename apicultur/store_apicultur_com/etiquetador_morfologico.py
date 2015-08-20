@@ -3,11 +3,12 @@
 
 from apicultur.service import Service
 
-class etiquetador_morfologico(Service):
+class EtiquetadorMorfologico(Service):
+    # https://store.apicultur.com/apis/info?name=EtiquetadorMorfologico&version=1.0.0&provider=MolinodeIdeas
     version = '1.0.0'
     endpoint = 'etiqueta'
     method = 'POST'
     arguments = ['texto',]
 
     def get_endpoint(self):
-        return self._join_url(self.endpoint, self.version, '%(word)s')
+        return self._join_url(self.endpoint, self.version)
