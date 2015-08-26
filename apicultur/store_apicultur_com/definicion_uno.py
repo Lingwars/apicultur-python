@@ -4,7 +4,7 @@
 from apicultur.service import Service
 # https://store.apicultur.com/apis/info?name=DiccionariodeEspanol&version=1.0.0&provider=MolinodeIdeas
 # https://store.apicultur.com/api/dicc/1.0.0/definicion/10/mel%C3%B3n
-class Eefinicion_Uno(Service):
+class Definicion_Uno(Service):
     prepoint = 'dicc'
     version = '1.0.0'
     endpoint = 'definicion/10'
