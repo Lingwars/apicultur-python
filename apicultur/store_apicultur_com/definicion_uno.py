@@ -12,4 +12,4 @@ class Definicion_Uno(Service):
     arguments = ['word',]
 
     def get_endpoint(self):
-        return self._join_url(self.prepoint, self.version, self.endpoint, self.version, '%(word)s')
+        return self._join_url(self.prepoint, self.version, self.endpoint, '%(word)s')
