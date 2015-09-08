@@ -11,7 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-Documentación sobre el proyecto.
+   introduction
+   services
 
 
 Indices and tables
