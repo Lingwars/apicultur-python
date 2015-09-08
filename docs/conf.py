@@ -16,9 +16,10 @@
 import sys
 import os
 import shlex
+import codecs
 
 def get_version(include_revision=True):
-    with open(os.path.join('../', 'apicultur', '__init__.py'), encoding='utf-8') as f:
+    with codecs.open(os.path.join('../', 'apicultur', '__init__.py'), 'r', 'utf-8') as f:
         for line in f:
             if line.startswith('__version__ ='):
                 version = line.split('=')[1].strip().strip('"\'')
