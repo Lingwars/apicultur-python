@@ -7,7 +7,7 @@
 
 Python client to [Apicultur](http://apicultur.com/) API services
 
- * Read the docs: [http://apicultur-python.readthedocs.org/en/latest/](http://apicultur-python.readthedocs.org/en/latest/)
+ * Read the docs: [http://apicultur-python.readthedocs.org/](http://apicultur-python.readthedocs.org/)
 
 ## Installation
 Apicultur is available at Pypi, you can install it typing:
