@@ -4,6 +4,7 @@
 from apicultur.service import Service
 
 class Lematizador2(Service):
+    # http://store.apicultur.com/apis/info?name=Lematizador2&version=1.0.0&provider=MolinodeIdeas
     version = '1.0.0'
     endpoint = 'lematiza2'
     method = 'GET'
