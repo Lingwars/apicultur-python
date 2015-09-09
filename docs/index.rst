@@ -3,16 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to apicultur-python's documentation!
-====================================
+Documentación de la biblioteca apicultur (Python)
+=================================================
 
-Contents:
+Tabla de contenidos:
 
 .. toctree::
    :maxdepth: 2
 
    introduction
+   apicultur
    services
+   contribute
 
 
 Indices and tables
