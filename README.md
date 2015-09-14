@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lingwars/apicultur-python.svg?branch=master)](https://travis-ci.org/lingwars/apicultur-python)
+[![Build Status](https://travis-ci.org/Lingwars/apicultur-python.svg?branch=master)](https://travis-ci.org/Lingwars/apicultur-python)
 
 [![Documentation Status](https://readthedocs.org/projects/apicultur-python/badge/?version=latest)](https://readthedocs.org/projects/apicultur-python/?badge=latest)
 
