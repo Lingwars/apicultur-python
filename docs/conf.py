@@ -18,6 +18,7 @@ import os
 import shlex
 import codecs
 
+
 def get_version(include_revision=True):
     with codecs.open(os.path.join('../', 'apicultur', '__init__.py'), 'r', 'utf-8') as f:
         for line in f:
@@ -42,7 +43,9 @@ def get_version(include_revision=True):
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = ['sphinx.ext.autodoc',]
+sys.path.append('../')
+sys.path.append(os.path.join('../', 'apicultur/store_apicultur_com'))
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

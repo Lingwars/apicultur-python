@@ -3,7 +3,7 @@
 
 from apicultur.service import Service
 
-class CalculadorFrecuencia(Service):
+class SilabeadorOrtografico(Service):
     """
     Separa en sílabas la palabra introducida
 

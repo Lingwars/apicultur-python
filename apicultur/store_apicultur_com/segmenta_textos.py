@@ -11,7 +11,7 @@ class SegmentaTextos(Service):
 
     +Info: https://store.apicultur.com/apis/info?name=SegmentadorDeTextos&version=1.0.0&provider=MolinodeIdeas
     """
-    # https://store.apicultur.com/apis/info?name=SegmentadorDeTextos&version=1.0.0&provider=MolinodeIdeas
+
     version = '1.0.0'
     endpoint = 'segmentatextos'
     method = 'POST'
