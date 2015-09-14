@@ -53,10 +53,12 @@ class Apicultur(object):
             instance = obj(self.access_token, self.base_url)
             print(u"%-20s\t\tapicultur.%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
             print(u"%-20s\t\t - file: %s" % ("", obj._filepath))
-            print(u"%-20s\t\t - endpoint: %s" % ("", instance.get_endpoint()))
+            print(u"%-20s\t\t - endpoint: [%s] %s" % ("", instance.method, instance.get_endpoint()))
             if test:
                 r = instance.test_call()
                 print(u"%-20s\t\t - availability: %s" % ("", r))
+            if instance.__doc__:
+                print(instance.__doc__)
             print('')
 
     def set_throttle(self, max_messages=0, every_seconds=None):

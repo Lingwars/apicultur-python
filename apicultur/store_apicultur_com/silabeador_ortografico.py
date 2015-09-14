@@ -4,6 +4,9 @@
 from apicultur.service import Service
 
 class CalculadorFrecuencia(Service):
+    """
+    Esto pretende ser documentación.
+    """
     # http://store.apicultur.com/apis/info?name=SilabeadorOrtografico&version=1.0.0&provider=MolinodeIdeas
     version = '1.0.0'
     endpoint = 'silabeame'

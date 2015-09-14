@@ -124,6 +124,6 @@ def load_services(path, version=None):
             func_name = service.get_func_name()
             if func_name in endpoints:
                 raise ImportError("Duplicate endpoint at %r" % func_name)
-            service._filepath = path
+            service._filepath = os.path.join(path, service.__module__ + '.py')
             endpoints.update({func_name: service})
     return endpoints
