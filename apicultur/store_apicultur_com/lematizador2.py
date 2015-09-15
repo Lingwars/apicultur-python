@@ -4,7 +4,13 @@
 from apicultur.service import Service
 
 class Lematizador2(Service):
-    # http://store.apicultur.com/apis/info?name=Lematizador2&version=1.0.0&provider=MolinodeIdeas
+    """
+    Dada una palabra, devuelve todos los lemas posibles y su categoría gramatical y
+    análisis morfológico, siguiendo la nomenclatura de las etiquetas EAGLES
+
+    +Info: http://store.apicultur.com/apis/info?name=Lematizador2&version=1.0.0&provider=MolinodeIdeas
+    """
+
     version = '1.0.0'
     endpoint = 'lematiza2'
     method = 'GET'
