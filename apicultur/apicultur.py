@@ -45,18 +45,19 @@ class Apicultur(object):
         # TODO: Is there a way to check this?
         return True
 
-    def list_services(self, test=False):
+    def list_services(self, doc=True, test=False):
         # List all services available in 'services' package and compatible with this version.
-        print(u"IDENTIFIER\t\t\tDATA")
-        print(u"==========\t\t\t====")
         for (endpoint, obj) in self._endpoints.items():
             instance = obj(self.access_token, self.base_url)
-            print(u"%-20s\t\tapicultur.%s(%s)" % (obj.__name__, endpoint, ', '.join(obj.arguments)))
-            print(u"%-20s\t\t - file: %s" % ("", obj._filepath))
-            print(u"%-20s\t\t - endpoint: %s" % ("", instance.get_endpoint()))
+            print(obj.__name__)
+            print(u"    apicultur.%s(%s)" % (endpoint, ', '.join(obj.arguments)))
+            print(u"     - file: %s" % (obj._filepath))
+            print(u"     - endpoint: [%s] %s" % (instance.method, instance.get_endpoint()))
             if test:
                 r = instance.test_call()
-                print(u"%-20s\t\t - availability: %s" % ("", r))
+                print(u"     - availability: %s" % (r))
+            if doc and instance.__doc__:
+                print(instance.__doc__)
             print('')
 
     def set_throttle(self, max_messages=0, every_seconds=None):

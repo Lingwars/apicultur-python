@@ -6,6 +6,15 @@
 apicultur-python
 ================
 
+Apicultur_ es un proyecto para crear un banco de herramientas lingüísticas
+a disposición de cualquier persona que quiera trabajar en este área. Cuenta
+con numerosas APIs que permiten realizar tareas de lematización, análisis
+sintáctico, morfológico,... Esta librería se ha desarrollado con el objetivo
+de simplificar la utlización de estas APIs y que el usuario pueda centrarse
+en implementar las funcionalidades de su aplicación.
+
+.. _Apicultur: http://apicultur.com/
+
 Tabla de contenidos:
 
 .. toctree::

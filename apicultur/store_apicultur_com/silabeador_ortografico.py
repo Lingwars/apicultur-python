@@ -3,8 +3,12 @@
 
 from apicultur.service import Service
 
-class CalculadorFrecuencia(Service):
-    # http://store.apicultur.com/apis/info?name=SilabeadorOrtografico&version=1.0.0&provider=MolinodeIdeas
+class SilabeadorOrtografico(Service):
+    """
+    Separa en sílabas la palabra introducida
+
+    +Info: http://store.apicultur.com/apis/info?name=SilabeadorOrtografico&version=1.0.0&provider=MolinodeIdeas
+    """
     version = '1.0.0'
     endpoint = 'silabeame'
     method = 'GET'
