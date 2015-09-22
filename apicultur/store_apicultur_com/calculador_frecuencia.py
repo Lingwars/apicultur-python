@@ -4,7 +4,13 @@
 from apicultur.service import Service
 
 class CalculadorFrecuencia(Service):
-    # https://store.apicultur.com/apis/info?name=CalculadorFrecuencia&version=1.0.0&provider=MolinodeIdeas
+    """
+    Obtiene la frecuencia de uso o aparición en textos de una palabra. Calcula el número
+    de veces que aparece dicha palabra por cada millón de palabras empleadas.
+
+    +Info: https://store.apicultur.com/apis/info?name=CalculadorFrecuencia&version=1.0.0&provider=MolinodeIdeas
+    """
+
     version = '1.0.0'
     endpoint = 'CalculaFrecuenciaPorMillon'
     method = 'GET'
