@@ -409,3 +409,16 @@ En `apicultur.io`_ son accesibles otro conjunto de servicios diferente:
          {'oracion': ['¿', 'Y', 'tú', 'me', 'lo', 'preguntas', '?']},
          {'oracion': ['Poesía', '...', 'eres', 'tú', '.']}]
 
+* TransitiveVerb_: Spanish verb conjugator API: Given a verb in infinitive, the API provides information
+  concerning its transitive status. 1-Never, 2-Depends on meaning, 3-Always.
+
+.. _TransitiveVerb: http://apicultur.io/apis/info?name=VerbTransitive_Onoma_es&version=1.0.0&provider=molinodeideas
+
+    .. code::
+
+        >>> apiio.transitive_verb(infinitivo=u"Querer"))
+        {'response': [{'pronominal': 1}]}
+        >>> apiio.transitive_verb(infinitivo=u"Correr"))
+        {'response': [{'pronominal': 2}]}
+
+
