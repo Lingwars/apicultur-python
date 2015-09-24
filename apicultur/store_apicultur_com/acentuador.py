@@ -5,7 +5,7 @@ from apicultur.service import Service
 
 class Acentuador(Service):
     """
-    Dadas las lílabas y la posición de la sílaba tónica devuelve la palabra correctamente acentuada
+    Dadas las sílabas y la posición de la sílaba tónica devuelve la palabra correctamente acentuada
     +Info: http://store.apicultur.com/apis/info?name=Acentuador&version=1.0.0&provider=molinodeideas
     """
     version = '1.0.0'
